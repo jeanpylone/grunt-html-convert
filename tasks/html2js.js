@@ -1,16 +1,16 @@
 /*
- * grunt-html-convert
- * https://github.com/soundstep/grunt-html-convert
+ * grunt-templates2js
+ * https://github.com/jeanpylone/grunt-templates2js
  *
- * Copyright (c) 2013 Romuald Quantin
+ * Copyright (c) 2014 Jean-Philippe Schneider
  * Licensed under the MIT license.
  *
  * Fork from:
  *
- * grunt-html2js
- * https://github.com/karlgoldstein/grunt-html2js
+ * grunt-html-convert
+ * https://github.com/soundstep/grunt-html-convert
  *
- * Copyright (c) 2013 Karl Goldstein
+ * Copyright (c) 2013 Romuald Quantin
  * Licensed under the MIT license.
  */
 
@@ -79,7 +79,7 @@ var camelCased = function(str) {
     return module;
   };
 
-  grunt.registerMultiTask('htmlConvert', 'Compiles html to JavaScript.', function() {
+  grunt.registerMultiTask('templates2js', 'Compiles html templates to JavaScript.', function() {
 
     var options = this.options({
       base: 'src',
