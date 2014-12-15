@@ -92,6 +92,7 @@ var camelCased = function(str) {
       indentString: '   ',
       indentGlobal: '',
       target: 'js',
+      htmlmin: {},
       prefix: '',
       suffix: ''
     });
