@@ -1,16 +1,16 @@
 /*
- * grunt-html-convert
- * https://github.com/soundstep/grunt-html-convert
+ * grunt-templates2js
+ * https://github.com/jeanpylone/grunt-templates2js
  *
- * Copyright (c) 2013 Romuald Quantin
+ * Copyright (c) 2014 Jean-Philippe Schneider
  * Licensed under the MIT license.
  *
  * Fork from:
  *
- * grunt-html2js
- * https://github.com/karlgoldstein/grunt-html2js
+ * grunt-html-convert
+ * https://github.com/soundstep/grunt-html-convert
  *
- * Copyright (c) 2013 Karl Goldstein
+ * Copyright (c) 2013 Romuald Quantin
  * Licensed under the MIT license.
  */
 
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     // See https://github.com/gruntjs/grunt/wiki/Configuring-tasks
     // for configuration options that need to be tested
-    htmlConvert: {
+    templates2js: {
 
       regex_in_template: {
         src: ['test/fixtures/pattern.tpl.html'],
@@ -209,7 +209,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'htmlConvert', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'templates2js', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
