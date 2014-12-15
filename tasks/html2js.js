@@ -19,7 +19,8 @@
 module.exports = function(grunt) {
 
   var path = require('path');
-
+  var minify = require('html-minifier').minify;
+  
   var escapeContent = function(content, quoteChar, indentString, indentGlobal) {
     var bsRegexp = new RegExp('\\\\', 'g');
     var quoteRegexp = new RegExp('\\' + quoteChar, 'g');
@@ -52,18 +53,20 @@ var camelCased = function(str) {
 
   // compile a template to an angular module
   var compileTemplate = function(targetModule, moduleName, filepath, quoteChar, indentString, indentGlobal) {
-
-    var content = escapeContent(grunt.file.read(filepath), quoteChar, indentString, indentGlobal);
+    var content = grunt.file.read(filepath);
+    if (Object.keys(options.htmlmin).length) {
+      try {
+        content = minify(content, options.htmlmin);
+      } catch (err) {
+        grunt.warn(filepath + '\n' + err);
+      }
+    }
+    content = escapeContent(content, quoteChar, indentString, indentGlobal);
 
     var module = indentGlobal + camelCased(targetModule) + '[' + quoteChar + moduleName +
       quoteChar + '] = ' + quoteChar +  content +
        quoteChar + ';\n';
 
-//    var module = 'angular.module(' + quoteChar + moduleName +
-//      quoteChar + ', []).run([' + quoteChar + '$templateCache' + quoteChar + ', function($templateCache) ' +
-//      '{\n' + indentString + '$templateCache.put(' + quoteChar + moduleName + quoteChar + ',\n' + doubleIndent  + quoteChar +  content +
-//       quoteChar + ');\n}]);\n';
-//
     return module;
   };
 
