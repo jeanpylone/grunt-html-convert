@@ -155,6 +155,18 @@ options: {
 }
 ```
 
+#### process:
+Type: `Object` or `Boolean` or `Function`
+Default value: `false`
+
+Performs arbitrary processing on the template as part of the compilation process.
+
+Option value can be one of:
+
+1. a function that accepts `content` and `filepath` as arguments, and returns the transformed content
+2. an object that is passed as the second options argument to `grunt.template.process` (with the file content as the first argument)
+3.  `true` to call `grunt.template.process` with the content and no options
+
 ### Usage Examples
 
 See the `Gruntfile.js` in the project source code for various configuration examples.
