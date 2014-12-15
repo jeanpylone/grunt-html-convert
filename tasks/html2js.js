@@ -48,11 +48,11 @@ module.exports = function(grunt) {
   };
 
 var camelCased = function(str) {
-	return str.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase() });
-}
+  return str.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase() });
+};
 
   // compile a template to an angular module
-  var compileTemplate = function(targetModule, moduleName, filepath, quoteChar, indentString, indentGlobal) {
+  var compileTemplate = function(targetModule, moduleName, filepath, quoteChar, indentString, indentGlobal, options) {
     var content = grunt.file.read(filepath);
     if (Object.keys(options.htmlmin).length) {
       try {
@@ -92,8 +92,8 @@ var camelCased = function(str) {
       indentString: '   ',
       indentGlobal: '',
       target: 'js',
-	  prefix: '',
-	  suffix: ''
+      prefix: '',
+      suffix: ''
     });
 
     // generate a separate module
@@ -112,7 +112,7 @@ var camelCased = function(str) {
         }
         moduleNames.push("'" + moduleName + "'");
         if (options.target === 'js') {
-          return compileTemplate(targetModule, moduleName, filepath, options.quoteChar, options.indentString, options.indentGlobal);
+          return compileTemplate(targetModule, moduleName, filepath, options.quoteChar, options.indentString, options.indentGlobal, options);
         } else if (options.target === 'coffee') {
           return compileCoffeeTemplate(targetModule, moduleName, filepath, options.quoteChar, options.indentString, options.indentGlobal);
         } else {
@@ -121,14 +121,14 @@ var camelCased = function(str) {
 
       }).join(grunt.util.normalizelf('\n'));
 
-	  var bundle = "";
+      var bundle = "";
       var fileHeader = options.fileHeaderString !== '' ? options.fileHeaderString + '\n' : '';
       //Allow a 'no targetModule if module is null' option
       if (targetModule) {
-	      bundle += options.indentGlobal;
-	      if (options.target === 'js') {
-		      bundle += 'var ';
-	      }
+        bundle += options.indentGlobal;
+        if (options.target === 'js') {
+          bundle += 'var ';
+        }
         bundle += camelCased(targetModule) + " = {}";
         if (options.target === 'js') {
           bundle += ';';
@@ -136,8 +136,8 @@ var camelCased = function(str) {
 
         bundle += "\n\n";
       }
-	    var prefix = options.prefix || '';
-	    var suffix = options.suffix || '';
+      var prefix = options.prefix || '';
+      var suffix = options.suffix || '';
 
       grunt.file.write(f.dest, fileHeader + prefix + bundle + modules + suffix);
     });
