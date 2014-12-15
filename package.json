@@ -36,6 +36,9 @@
 	"peerDependencies": {
 		"grunt": "~0.4.0"
 	},
+	"dependencies": {
+                "html-minifier": "~0.6.0"
+	}
 	"keywords": [
 		"gruntplugin"
 	]
