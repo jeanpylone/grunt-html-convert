@@ -19,11 +19,7 @@
 module.exports = function(grunt) {
 
   var path = require('path');
-  var hbAttrWrapOpen = /\{\{#[^}]+\}\}/;
-  var hbAttrWrapClose = /\{\{\/[^}]+\}\}/;
-  var hbAttrWrapPair = [hbAttrWrapOpen, hbAttrWrapClose];
-
-  var minify = require('html-minifier', { customAttrSurround: [hbAttrWrapPair] });
+  var minify = require('html-minifier');
 
   var escapeContent = function(content, quoteChar, indentString, indentGlobal) {
     var bsRegexp = new RegExp('\\\\', 'g');
@@ -58,6 +54,18 @@ var camelCased = function(str) {
   // compile a template to an angular module
   var compileTemplate = function(targetModule, moduleName, filepath, quoteChar, indentString, indentGlobal, options) {
     var content = grunt.file.read(filepath);
+    
+    // Process files as templates if requested.
+    var process = options.process;
+    if (typeof process === "function") {
+      content = process(content, filepath);
+    } else if (process) {
+      if (process === true) {
+        process = {};
+      }
+      content = grunt.template.process(content, process);
+    }
+
     if (Object.keys(options.htmlmin).length) {
       try {
         content = minify(content, options.htmlmin);
@@ -97,6 +105,7 @@ var camelCased = function(str) {
       indentGlobal: '',
       target: 'js',
       htmlmin: {},
+      process: false,
       prefix: '',
       suffix: ''
     });
