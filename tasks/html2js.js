@@ -19,8 +19,12 @@
 module.exports = function(grunt) {
 
   var path = require('path');
-  var minify = require('html-minifier').minify;
-  
+  var hbAttrWrapOpen = /\{\{#[^}]+\}\}/;
+  var hbAttrWrapClose = /\{\{\/[^}]+\}\}/;
+  var hbAttrWrapPair = [hbAttrWrapOpen, hbAttrWrapClose];
+
+  var minify = require('html-minifier', { customAttrSurround: [hbAttrWrapPair] });
+
   var escapeContent = function(content, quoteChar, indentString, indentGlobal) {
     var bsRegexp = new RegExp('\\\\', 'g');
     var quoteRegexp = new RegExp('\\' + quoteChar, 'g');
