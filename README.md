@@ -1,8 +1,8 @@
-# grunt-html-convert
+# grunt-templates2js
 
 > Converts html templates to JavaScript
 
-This is a fork of the [html2js repo](https://github.com/karlgoldstein/grunt-html2js), the original grunt task converts html to angular modules. This fork convert html to vanilla javascript.
+This is a fork of the [grunt-html-convert repo](https://github.com/soundstep/grunt-html-convert). This fork convert html to vanilla javascript, adding new features.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.0`
@@ -16,10 +16,10 @@ npm install grunt-html-convert --save-dev
 One the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-html-convert');
+grunt.loadNpmTasks('grunt-templates2js');
 ```
 
-## The "htmlConvert" task
+## The "templates2js" task
 
 ### Overview
 
@@ -31,7 +31,7 @@ Note that this plugin does *not* compile the templates.  It simply caches the te
 
 ```js
 grunt.initConfig({
-  htmlConvert: {
+  templates2js: {
     options: {
       // custom options, see below    
     },
@@ -134,6 +134,27 @@ If specified, this string  will get written at the top of the output
 Template.js file. As an example, jshint directives such as
 /* global soma: false */ can be put at the head of the file.
 
+#### htmlmin:
+Type: `Object`
+Default value: {}
+
+Minifies HTML using [html-minifier](https://github.com/kangax/html-minifier).
+
+```
+options: {
+  htmlmin: {
+    collapseBooleanAttributes: true,
+    collapseWhitespace: true,
+    removeAttributeQuotes: true,
+    removeComments: true,
+    removeEmptyAttributes: true,
+    removeRedundantAttributes: true,
+    removeScriptTypeAttributes: true,
+    removeStyleLinkTypeAttributes: true
+  }
+}
+```
+
 ### Usage Examples
 
 See the `Gruntfile.js` in the project source code for various configuration examples.
@@ -143,4 +164,4 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
 
-0.0.1 convert the angular grunt task to vanilla javascript
+0.0.1 adding html-minifier support
