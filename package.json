@@ -1,23 +1,23 @@
 {
-	"name": "grunt-html-convert",
-	"description": "Compiles html to JavaScript",
+	"name": "grunt-templates2js",
+	"description": "Compiles html templates to JavaScript",
 	"version": "0.0.1",
-	"homepage": "https://github.com/soundstep/grunt-html-convert",
+	"homepage": "https://github.com/jeanpylone/grunt-templates2js",
 	"author": {
-		"name": "Romuald Quantin",
-		"email": "romu@soundstep.com"
+		"name": "Jean-Philippe Schneider",
+		"email": "jeanpylone@gmail.com"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/soundstep/grunt-html-convert.git"
+		"url": "https://github.com/jeanpylone/grunt-templates2js.git"
 	},
 	"bugs": {
-		"url": "https://github.com/soundstep/grunt-html-convert/issues"
+		"url": "https://github.com/jeanpylone/grunt-templates2js/issues"
 	},
 	"licenses": [
 		{
 			"type": "MIT",
-			"url": "https://github.com/soundstep/grunt-html-convert/blob/master/LICENSE-MIT"
+			"url": "https://github.com/jeanpylone/grunt-templates2js/blob/master/LICENSE-MIT"
 		}
 	],
 	"main": "GruntFile.js",
